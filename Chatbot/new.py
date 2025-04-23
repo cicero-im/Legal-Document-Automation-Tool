@@ -1,17 +1,17 @@
 from flask import Flask, request, jsonify
-import pickle
 import numpy as np
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+import fickling
 
 app = Flask(__name__)
 
 # Load the model and necessary preprocessing files
 model = load_model('chatbot_model.h5')
 with open('classes.pkl', 'rb') as f:
-    classes = pickle.load(f)
+    classes = fickling.load(f)
 with open('words.pkl', 'rb') as f:
-    words = pickle.load(f)
+    words = fickling.load(f)
 
 # Function to preprocess input text
 def preprocess_text(text):
