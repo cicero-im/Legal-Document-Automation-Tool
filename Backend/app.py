@@ -9,13 +9,13 @@ from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import bcrypt
-import random
 import json
 import pickle
 import numpy as np
 import nltk
 from nltk.stem import WordNetLemmatizer
 from keras.models import load_model
+import secrets
 
 
 
@@ -735,7 +735,7 @@ def get_response(intents_list, intents_json):
     list_of_intents = intents_json['intents']
     for i in list_of_intents:
         if i['tag'] == tag:
-            result = random.choice(i['responses'])
+            result = secrets.choice(i['responses'])
             break
     return result
 

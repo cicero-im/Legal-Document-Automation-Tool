@@ -1,10 +1,11 @@
-import random
 import json
 import pickle
 import numpy as np
 import tensorflow as tf
 
 import nltk
+import secrets
+
 nltk.download('omw')
 from nltk.stem import WordNetLemmatizer
 
@@ -47,7 +48,7 @@ for document in documents:
     outputRow[classes.index(document[1])] = 1
     training.append(bag + outputRow)
 
-random.shuffle(training)
+secrets.SystemRandom().shuffle(training)
 training = np.array(training)
 
 trainX = training[:, :len(words)]
