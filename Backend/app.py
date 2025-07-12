@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file
+from flask import Flask, request
 from flask import Flask, request, jsonify
 
 from flask_cors import CORS
@@ -16,6 +16,8 @@ import numpy as np
 import nltk
 from nltk.stem import WordNetLemmatizer
 from keras.models import load_model
+import flask
+from pathlib import Path
 
 
 
@@ -162,7 +164,7 @@ def print_info():
     if updated_doc:
         # Send the updated document back to the React app
         updated_doc.save('updated_document.docx')
-        return send_file('updated_document.docx', as_attachment=True)
+        return flask.send_from_directory((p := Path('updated_document.docx')).parent, p.name, as_attachment=True)
     else:
         return "Failed to fetch the document from the URL", 500
     
@@ -302,7 +304,7 @@ def print_info_divorce():
     if updated_doc_Divorce:
         # Send the updated document back to the React app
         updated_doc_Divorce.save('updated_document_Divorce.docx')
-        return send_file('updated_document_Divorce.docx', as_attachment=True)
+        return flask.send_from_directory((p := Path('updated_document_Divorce.docx')).parent, p.name, as_attachment=True)
     else:
         return "Failed to fetch the document from the URL", 500
 
@@ -512,7 +514,7 @@ def print_info_sale():
     if updated_doc_Sale:
         # Send the updated document back to the React app
         updated_doc_Sale.save('updated_document_Sale.docx')
-        return send_file('updated_document_Sale.docx', as_attachment=True)
+        return flask.send_from_directory((p := Path('updated_document_Sale.docx')).parent, p.name, as_attachment=True)
     else:
         return "Failed to fetch the document from the URL", 500
 
@@ -650,7 +652,7 @@ def print_info_adoption():
     if updated_doc_Adoption:
         # Send the updated document back to the React app
         updated_doc_Adoption.save('updated_document_Adoption.docx')
-        return send_file('updated_document_Adoption.docx', as_attachment=True)
+        return flask.send_from_directory((p := Path('updated_document_Adoption.docx')).parent, p.name, as_attachment=True)
     else:
         return "Failed to fetch the document from the URL", 500
 
